@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import { createRegularExpressionLiteral } from 'typescript';
 
 const today = new Date();
 const formatted = today.toLocaleDateString("ja-JP", {
@@ -73,6 +74,15 @@ class Todo {
   }
 };
 
+class eight {
+  id: number;
+  text: string;
+  constructor(id: number, text: string) {
+    this.id = id;
+    this.text = text;
+  }
+};
+
 type HandleSubmitProps = {
   text: string;
   setText: Function;
@@ -138,13 +148,13 @@ function handleSubmit({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPL
 };
 
 
-function TaskBox({ Todos, setTodos, isOpen, setIsOpen }: { Todos: Todo[]; setTodos: Function; isOpen: boolean; setIsOpen: Function}) {
+function TaskBox({ Todos, setTodos, isOpen, setIsOpen, eight, setEight }: { Todos: Todo[]; setTodos: Function; isOpen: boolean; setIsOpen: Function; eight: eight[]; setEight:Function; }) {
   return (
     <ul>
       {Object.values(Todos).map(todo => {
         return (
           <li key={todo.id}>
-            <button className="margin" onClick={()=> setIsOpen(true)}>←</button>
+            <button className="margin" onClick={()=> moveTodo(todo.id, todo.text, prompt("time:"), eight, setEight)}>←</button>
             <input className="margin" type="text" value={todo.text} />
             <input className="margin" type="time" value={todo.deadLine}/>
             <button className="margin" onClick={() => editTodo(Todos, setTodos, todo.id, prompt("new Text:"), prompt('New deadline:'))}>編集</button>
@@ -154,6 +164,13 @@ function TaskBox({ Todos, setTodos, isOpen, setIsOpen }: { Todos: Todo[]; setTod
       })}
     </ul>
   )
+};
+
+const moveTodo = (id: number, text: string, time: string | null, eight: {}, setEight: Function) => {
+ if(time === "8"){
+  setEight({...eight, [id]: {id: id, text:text}})
+}
+else return null;
 };
 
 function SetTimeModal({isOpen, setIsOpen}:{isOpen: boolean; setIsOpen: Function}) {
@@ -183,6 +200,22 @@ const deleteTodo = (Todos: {}, setTodos: Function, id: number) => {
   setTodos({ ...Todos, [id]: {} });
 };
 
+function Eight({eight}:{eight:eight[]}){
+return (
+  <ul>
+    {Object.values(eight).map(todo => {
+      return (
+        <li key={todo.id}>
+          <input className="margin" type="text" value={todo.text} />
+        </li>
+      )
+    })}
+  </ul>
+)
+};
+
+
+
 export default function App() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [show, setShow] = useState<boolean>(false);
@@ -191,8 +224,10 @@ export default function App() {
   const [hPLI, setHPLI] = useState([]);
   const [lPHI, setLPHI] = useState([]);
   const [lPLI, setLPLI] = useState([]);
+  const [eight, setEight] = useState([]);
   const [ListBoxPlace, setListBoxPlace] = useState<string>("");
   const [deadLine, setDeadLine] = useState<string>("");
+console.log(eight);
 
   return (
     <>
@@ -207,7 +242,7 @@ export default function App() {
           </tr>
           <tr>
             <td>8:00</td>
-            <td>予定</td>
+            <td><Eight eight={eight}/></td>
           </tr>
           <tr>
             <td>9:00</td>
@@ -255,21 +290,21 @@ export default function App() {
             <SetTimeModal isOpen={isOpen} setIsOpen={setIsOpen}/>
             <div className='box1'>重要度 高 / 優先度 高
               <Button setShow={setShow} ListBoxPlace={"HPHI"} setListBoxPlace={setListBoxPlace} />
-              <TaskBox Todos={hPHI} setTodos={setHPHI} isOpen={isOpen} setIsOpen={setIsOpen}/>
+              <TaskBox Todos={hPHI} setTodos={setHPHI} isOpen={isOpen} setIsOpen={setIsOpen} eight={eight} setEight={setEight}/>
             </div>
             <div className='box2'>重要度 低 / 優先度 高
               <Button setShow={setShow} ListBoxPlace={"HPLI"} setListBoxPlace={setListBoxPlace} />
-              <TaskBox Todos={hPLI} setTodos={setHPLI} isOpen={isOpen} setIsOpen={setIsOpen}/>
+              <TaskBox Todos={hPLI} setTodos={setHPLI} isOpen={isOpen} setIsOpen={setIsOpen}eight={eight} setEight={setEight}/>
             </div>
           </div>
           <div className='right-row-container'>
             <div className='box3'>重要度 高 / 優先度 低
               <Button setShow={setShow} ListBoxPlace={"LPHI"} setListBoxPlace={setListBoxPlace} />
-              <TaskBox Todos={lPHI} setTodos={setLPHI} isOpen={isOpen} setIsOpen={setIsOpen}/>
+              <TaskBox Todos={lPHI} setTodos={setLPHI} isOpen={isOpen} setIsOpen={setIsOpen}eight={eight} setEight={setEight}/>
             </div>
             <div className='box4'>重要度 低 / 優先度 低
               <Button setShow={setShow} ListBoxPlace={"LPLI"} setListBoxPlace={setListBoxPlace} />
-              <TaskBox Todos={lPLI} setTodos={setLPLI} isOpen={isOpen} setIsOpen={setIsOpen}/>
+              <TaskBox Todos={lPLI} setTodos={setLPLI} isOpen={isOpen} setIsOpen={setIsOpen}eight={eight} setEight={setEight}/>
             </div>
           </div>
         </div>
