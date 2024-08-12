@@ -1,6 +1,10 @@
+
 import { useState } from 'react';
 import './App.css';
-import { createRegularExpressionLiteral } from 'typescript';
+import { Button } from './components/Button';
+import { Modal } from './components/Modal';
+import { TaskBox } from './components/TaskBox';
+import { TodoBoard } from './components/TodoBoard';
 
 const today = new Date();
 const formatted = today.toLocaleDateString("ja-JP", {
@@ -9,215 +13,7 @@ const formatted = today.toLocaleDateString("ja-JP", {
   day: "2-digit",
 });
 
-type ButtonProps = {
-  setShow: Function;
-  ListBoxPlace: string;
-  setListBoxPlace: Function;
-};
-
-function Button({ setShow, ListBoxPlace, setListBoxPlace }: ButtonProps) {
-  return (
-    <button className='button' onClick={() => { setShow(true); setListBoxPlace(ListBoxPlace) }}>+</button>
-  )
-};
-
-type ModalProps = {
-  show: boolean;
-  setShow: Function;
-  text: string;
-  setText: Function;
-  hPHI: Todo[];
-  setHPHI: Function;
-  lPHI: Todo[];
-  setLPHI: Function;
-  hPLI: Todo[];
-  setHPLI: Function;
-  lPLI: Todo[];
-  setLPLI: Function;
-  ListBoxPlace: string;
-  deadLine: string;
-  setDeadLine: Function;
-};
-
-function Modal({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPLI, lPLI, setLPLI, text, setText, show, setShow, deadLine, setDeadLine }: ModalProps) {
-  if (show) {
-    return (
-      <div className="overlay">
-        <div className="content">
-          <h3>予定</h3>
-          <input type="text" value={text} onChange={(event) => setText(event.target.value)} />
-          <input type="time" value={deadLine} onChange={(event) => setDeadLine(event.target.value)} />
-          <input type="submit" value="送信" onClick={() => handleSubmit({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPLI, lPLI, setLPLI, text, setText, deadLine, setDeadLine})} />
-          <p><button onClick={() => setShow(false)}>閉じる</button></p>
-        </div>
-      </div>
-    )
-  }
-  else return null;
-};
-
-enum Area {
-  HPHIPlACE = "HPHI",
-  LPHIPlACE = "LPHI",
-  HPLIPlACE = "HPLI",
-  LPLIPlACE = "LPLI",
-};
-
-class Todo {
-  id: number;
-  text: string;
-  deadLine: string;
-  constructor(id: number, text: string, deadLine: string) {
-    this.id = id;
-    this.text = text;
-    this.deadLine = deadLine;
-  }
-};
-
-class eight {
-  id: number;
-  text: string;
-  constructor(id: number, text: string) {
-    this.id = id;
-    this.text = text;
-  }
-};
-
-type HandleSubmitProps = {
-  text: string;
-  setText: Function;
-  hPHI: Todo[];
-  setHPHI: Function;
-  lPHI: Todo[];
-  setLPHI: Function;
-  hPLI: Todo[];
-  setHPLI: Function;
-  lPLI: Todo[];
-  setLPLI: Function;
-  ListBoxPlace: string;
-  deadLine: string;
-  setDeadLine: Function;
-};
-
-function handleSubmit({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPLI, lPLI, setLPLI, text, setText, deadLine, setDeadLine}: HandleSubmitProps) {
-  if (!text) return;
-  if (ListBoxPlace === Area.HPHIPlACE) {
-    const id: number = new Date().getTime();
-    const newhPHI: Todo = {
-      id: new Date().getTime(),
-      text: text,
-      deadLine: deadLine,
-    }
-    setHPHI({ [id]: newhPHI, ...hPHI });
-    setText("");
-    setDeadLine("");
-  }
-  else if (ListBoxPlace === Area.LPHIPlACE) {
-    const id: number = new Date().getTime();
-    const newlPHI: Todo = {
-      id: new Date().getTime(),
-      text: text,
-      deadLine: deadLine,
-    }
-    setLPHI({ [id]: newlPHI, ...lPHI });
-    setText("");
-    setDeadLine("");
-  }
-  else if (ListBoxPlace === Area.HPLIPlACE) {
-    const id: number = new Date().getTime();
-    const newhPLI: Todo = {
-      id: new Date().getTime(),
-      text: text,
-      deadLine: deadLine,
-    }
-    setHPLI({ [id]: newhPLI, ...hPLI });
-    setText("");
-    setDeadLine("");
-  }
-  else if (ListBoxPlace === Area.LPLIPlACE) {
-    const id: number = new Date().getTime();
-    const newlPLI: Todo = {
-      id: new Date().getTime(),
-      text: text,
-      deadLine: deadLine,
-    }
-    setLPLI({ [id]: newlPLI, ...lPLI });
-    setText("");
-    setDeadLine("");
-  }
-};
-
-
-function TaskBox({ Todos, setTodos, isOpen, setIsOpen, eight, setEight }: { Todos: Todo[]; setTodos: Function; isOpen: boolean; setIsOpen: Function; eight: eight[]; setEight:Function; }) {
-  return (
-    <ul>
-      {Object.values(Todos).map(todo => {
-        return (
-          <li key={todo.id}>
-            <button className="margin" onClick={()=> moveTodo(todo.id, todo.text, prompt("time:"), eight, setEight)}>←</button>
-            <input className="margin" type="text" value={todo.text} />
-            <input className="margin" type="time" value={todo.deadLine}/>
-            <button className="margin" onClick={() => editTodo(Todos, setTodos, todo.id, prompt("new Text:"), prompt('New deadline:'))}>編集</button>
-            <button className="margin" onClick={() => deleteTodo(Todos, setTodos, todo.id)}>削除</button>
-          </li>
-        )
-      })}
-    </ul>
-  )
-};
-
-const moveTodo = (id: number, text: string, time: string | null, eight: {}, setEight: Function) => {
- if(time === "8"){
-  setEight({...eight, [id]: {id: id, text:text}})
-}
-else return null;
-};
-
-function SetTimeModal({isOpen, setIsOpen}:{isOpen: boolean; setIsOpen: Function}) {
-  if(isOpen){
-  return (
-  <div className="overlay">
-  <div className="content">
-  <h3>内容記入</h3>
-  <input type="text"/>
-  <button onClick={() => setIsOpen(false)}>閉じる</button>
-  </div>
-  </div>
-)}
-else return null;
-};
-
-
-
-const editTodo = (Todos: {}, setTodos: Function, id: number, newText: string | null, newDeadLine: string | null) => {
-  setTodos({ ...Todos, [id]: { id: id, text: newText, deadLine: newDeadLine } });
-};
-
-const deleteTodo = (Todos: {}, setTodos: Function, id: number) => {
-  /*const {[id]: {}, ...rest} = Todos;
-  setHPHI(Todos);
-  */
-  setTodos({ ...Todos, [id]: {} });
-};
-
-function Eight({eight}:{eight:eight[]}){
-return (
-  <ul>
-    {Object.values(eight).map(todo => {
-      return (
-        <li key={todo.id}>
-          <input className="margin" type="text" value={todo.text} />
-        </li>
-      )
-    })}
-  </ul>
-)
-};
-
-
-
 export default function App() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [show, setShow] = useState<boolean>(false);
   const [text, setText] = useState<string>("");
   const [hPHI, setHPHI] = useState([]);
@@ -225,9 +21,17 @@ export default function App() {
   const [lPHI, setLPHI] = useState([]);
   const [lPLI, setLPLI] = useState([]);
   const [eight, setEight] = useState([]);
+  const [nine, setNine] = useState([]);
+  const [ten, setTen] = useState([]);
+  const [eleven, setEleven] = useState([]);
+  const [twelve, setTwelve] = useState([]);
+  const [thirteen, setThirteen] = useState([]);
+  const [fourteen, setFourteen] = useState([]);
+  const [fifteen, setFifteen] = useState([]);
+  const [sixteen, setSixteen] = useState([]);
+  const [seventeen, setSeventeen] = useState([]);
   const [ListBoxPlace, setListBoxPlace] = useState<string>("");
   const [deadLine, setDeadLine] = useState<string>("");
-console.log(eight);
 
   return (
     <>
@@ -242,43 +46,43 @@ console.log(eight);
           </tr>
           <tr>
             <td>8:00</td>
-            <td><Eight eight={eight}/></td>
+            <td><TodoBoard Todos={eight} setTodo={setEight}/></td>
           </tr>
           <tr>
             <td>9:00</td>
-            <td>予定</td>
+            <td><TodoBoard Todos={nine} setTodo={setNine}/></td>
           </tr>
           <tr>
             <td>10:00</td>
-            <td>予定</td>
+            <td><TodoBoard Todos={ten} setTodo={setTen}/></td>
           </tr>
           <tr>
             <td>11:00</td>
-            <td>予定</td>
+            <td><TodoBoard Todos={eleven} setTodo={setEleven}/></td>
           </tr>
           <tr>
             <td>12:00</td>
-            <td>予定</td>
+            <td><TodoBoard Todos={twelve} setTodo={setTwelve}/></td>
           </tr>
           <tr>
             <td>13:00</td>
-            <td>予定</td>
+            <td><TodoBoard Todos={thirteen} setTodo={setThirteen}/></td>
           </tr>
           <tr>
             <td>14:00</td>
-            <td>予定</td>
+            <td><TodoBoard Todos={fourteen} setTodo={setFourteen}/></td>
           </tr>
           <tr>
             <td>15:00</td>
-            <td>予定</td>
+            <td><TodoBoard Todos={fifteen} setTodo={setFifteen}/></td>
           </tr>
           <tr>
             <td>16:00</td>
-            <td>予定</td>
+            <td><TodoBoard Todos={sixteen} setTodo={setSixteen}/></td>
           </tr>
           <tr>
             <td>17:00</td>
-            <td>予定</td>
+            <td><TodoBoard Todos={seventeen} setTodo={setSeventeen}/></td>
           </tr>
           </table>
         </div>
@@ -287,24 +91,23 @@ console.log(eight);
           <h2>TodoList</h2>
           <div className='right-high-container'>
             <Modal ListBoxPlace={ListBoxPlace} hPHI={hPHI} setHPHI={setHPHI} lPHI={lPHI} setLPHI={setLPHI} hPLI={hPLI} setHPLI={setHPLI} lPLI={lPLI} setLPLI={setLPLI} text={text} setText={setText} show={show} setShow={setShow} deadLine={deadLine} setDeadLine={setDeadLine}/>
-            <SetTimeModal isOpen={isOpen} setIsOpen={setIsOpen}/>
             <div className='box1'>重要度 高 / 優先度 高
               <Button setShow={setShow} ListBoxPlace={"HPHI"} setListBoxPlace={setListBoxPlace} />
-              <TaskBox Todos={hPHI} setTodos={setHPHI} isOpen={isOpen} setIsOpen={setIsOpen} eight={eight} setEight={setEight}/>
+              <TaskBox preTodos={hPHI} setPreTodos={setHPHI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen}/>
             </div>
             <div className='box2'>重要度 低 / 優先度 高
               <Button setShow={setShow} ListBoxPlace={"HPLI"} setListBoxPlace={setListBoxPlace} />
-              <TaskBox Todos={hPLI} setTodos={setHPLI} isOpen={isOpen} setIsOpen={setIsOpen}eight={eight} setEight={setEight}/>
+              <TaskBox preTodos={hPLI} setPreTodos={setHPLI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen}/>
             </div>
           </div>
           <div className='right-row-container'>
             <div className='box3'>重要度 高 / 優先度 低
               <Button setShow={setShow} ListBoxPlace={"LPHI"} setListBoxPlace={setListBoxPlace} />
-              <TaskBox Todos={lPHI} setTodos={setLPHI} isOpen={isOpen} setIsOpen={setIsOpen}eight={eight} setEight={setEight}/>
+              <TaskBox preTodos={lPHI} setPreTodos={setLPHI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen}/>
             </div>
             <div className='box4'>重要度 低 / 優先度 低
               <Button setShow={setShow} ListBoxPlace={"LPLI"} setListBoxPlace={setListBoxPlace} />
-              <TaskBox Todos={lPLI} setTodos={setLPLI} isOpen={isOpen} setIsOpen={setIsOpen}eight={eight} setEight={setEight}/>
+              <TaskBox preTodos={lPLI} setPreTodos={setLPLI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen}/>
             </div>
           </div>
         </div>
