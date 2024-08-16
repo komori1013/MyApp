@@ -8,8 +8,11 @@ export function Modal({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPL
     return (
       <div className="overlay">
         <div className="content">
-          <h3>予定</h3>
+          <h3>予定を追加する</h3>
+          <hr/>
+          <h4>予定</h4>
           <input type="text" value={text} onChange={(event) => setText(event.target.value)} />
+          <h4>所要時間</h4>
           <input type="time" value={deadLine} onChange={(event) => setDeadLine(event.target.value)} />
           <input type="submit" value="送信" onClick={() => handleSubmit({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPLI, lPLI, setLPLI, text, setText, deadLine, setDeadLine})} />
           <p><button onClick={() => setShow(false)}>閉じる</button></p>
