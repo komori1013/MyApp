@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import './App.css';
+import './assets/App.css';
 import { Button } from './components/Button';
 import { Modal } from './components/Modal';
 import { TaskBox } from './components/TaskBox';
