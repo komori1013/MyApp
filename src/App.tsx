@@ -37,6 +37,7 @@ export default function App() {
   const [seventeen, setSeventeen] = useState([]);
   const [ListBoxPlace, setListBoxPlace] = useState<string>("");
   const [deadLine, setDeadLine] = useState<string>("");
+  
   const weekStartDayOffset = 0;
   const _date = dayjs(); //
   const _day = _date.day();
@@ -54,55 +55,9 @@ export default function App() {
     <>
       <h2>{formatted}</h2>
       <body className='container'>
-        <div className='left-container'>
+        <div className="left-container">
           <h2>TodoBoard</h2>
           <Timeline dayList={dayList} />
-          <table className='table'>
-            <tr>
-              <th className='time-width'>時間</th>
-              <th className='todo-width'>内容</th>
-            </tr>
-            <tr>
-              <td>8:00</td>
-              <td><TodoBoard Todos={eight} setTodo={setEight} /></td>
-            </tr>
-            <tr>
-              <td>9:00</td>
-              <td><TodoBoard Todos={nine} setTodo={setNine} /></td>
-            </tr>
-            <tr>
-              <td>10:00</td>
-              <td><TodoBoard Todos={ten} setTodo={setTen} /></td>
-            </tr>
-            <tr>
-              <td>11:00</td>
-              <td><TodoBoard Todos={eleven} setTodo={setEleven} /></td>
-            </tr>
-            <tr>
-              <td>12:00</td>
-              <td><TodoBoard Todos={twelve} setTodo={setTwelve} /></td>
-            </tr>
-            <tr>
-              <td>13:00</td>
-              <td><TodoBoard Todos={thirteen} setTodo={setThirteen} /></td>
-            </tr>
-            <tr>
-              <td>14:00</td>
-              <td><TodoBoard Todos={fourteen} setTodo={setFourteen} /></td>
-            </tr>
-            <tr>
-              <td>15:00</td>
-              <td><TodoBoard Todos={fifteen} setTodo={setFifteen} /></td>
-            </tr>
-            <tr>
-              <td>16:00</td>
-              <td><TodoBoard Todos={sixteen} setTodo={setSixteen} /></td>
-            </tr>
-            <tr>
-              <td>17:00</td>
-              <td><TodoBoard Todos={seventeen} setTodo={setSeventeen} /></td>
-            </tr>
-          </table>
         </div>
 
         <div className='right-container'>

@@ -144,8 +144,6 @@ border: solid,black,1px;
 
   .left-container{
     border: solid,black,1px;
-    flex: 1;
-    display: flex;
     flex-direction: column;
   }
   .right-container{
@@ -237,6 +235,7 @@ border: solid,black,1px;
 
   .timeslotsContainer {
     height: 100%;
+    width:100%;
     overflow-y: scroll;
     display: flex;
   }
@@ -266,13 +265,13 @@ border: solid,black,1px;
     height: 220%;
     max-height: 1535px;
     min-height: 1440px;
-    width: 100%;
+    width: 50%;
     display: flex;
     overflow-y: hidden;
   }
   
   .calendarWrapper {
-    min-width: 99.95%;
+    min-width: 50%;
     display: flex;
     position: relative;
     top: 10px;

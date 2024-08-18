@@ -9,23 +9,6 @@ type TimelineProps = {
 };
 
 export function Timeline({dayList}: TimelineProps) {
-  const EmptyCell = (date: { date: string }) => {
-    return (
-      <>
-        {HOUR_LIST.map((hourList, index) => {
-          return (
-            <div key={hourList.hour}
-              onClick={() => {
-                console.log(date, `${hourList.hour}時`);
-              }}
-              className="empty"
-            />
-          );
-        })}
-      </>
-    );
-  };
-
   return (
     <div className="timeslotsContainer">
       <div className="timeslotBox">
@@ -49,26 +32,9 @@ export function Timeline({dayList}: TimelineProps) {
                 <div className="horizontalHeight" />
               </div>
             ))}
-          </div>
-          <div className="eventContainer">
-          {dayList.map((dayItem, index) => {
-              return (
-                <div
-                  key={dayItem.date}
-                  style={{ gridColumn: index + 1 }}
-                  className="calendarColumn"
-                >
-                  <div className="date">
-                    {dayItem.date.split("-").at(1)}-
-                    {dayItem.date.split("-").at(2)}
-                  </div>
-                  <EmptyCell date={dayItem.date} />
                 </div>
-              );
-            })}
           </div>
         </div>
       </div>
-    </div>
   );
 };
