@@ -10,7 +10,6 @@ export function TaskBox({ preTodos, setPreTodos, eight, setEight, nine, setNine,
           <li key={preTodo.id}>
             <button className="margin" onClick={()=> moveTodo(preTodos, setPreTodos, preTodo.id, preTodo.text, prompt("time:"), eight, setEight, nine, setNine, ten, setTen, eleven, setEleven, twelve, setTwelve, thirteen, setThirteen, fourteen, setFourteen, fifteen, setFifteen, sixteen, setSixteen, seventeen, setSeventeen)}>←</button>
             <input className="margin" type="text" value={preTodo.text} />
-            <input className="margin" type="time" value={preTodo.deadLine}/>
             <button className="margin" onClick={() => editTodo(preTodos, setPreTodos, preTodo.id, prompt("new Text:"), prompt('New deadline:'))}>編集</button>
             <button className="margin" onClick={() => deleteTodo(preTodos, setPreTodos, preTodo.id)}>削除</button>
           </li>

@@ -12,6 +12,4 @@ export type HandleSubmitProps = {
   lPLI: Todo[];
   setLPLI: Function;
   ListBoxPlace: string;
-  deadLine: string;
-  setDeadLine: Function;
 };

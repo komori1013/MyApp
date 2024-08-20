@@ -8,13 +8,7 @@ import { TaskBox } from './components/TaskBox';
 import { TodoBoard } from './components/TodoBoard';
 
 
-const today = new Date();
-const formatted = today.toLocaleDateString("ja-JP", {
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-});
-
+const today = dayjs().format("YYYY-MM-DD");
 
 
 
@@ -53,17 +47,15 @@ export default function App() {
 
   return (
     <>
-      <h2>{formatted}</h2>
       <body className='container'>
+
         <div className="left-container">
-          <h2>TodoBoard</h2>
-          <Timeline dayList={dayList} />
+          <Timeline/>
         </div>
 
         <div className='right-container'>
-          <h2>TodoList</h2>
           <div className='right-high-container'>
-            <Modal ListBoxPlace={ListBoxPlace} hPHI={hPHI} setHPHI={setHPHI} lPHI={lPHI} setLPHI={setLPHI} hPLI={hPLI} setHPLI={setHPLI} lPLI={lPLI} setLPLI={setLPLI} text={text} setText={setText} show={show} setShow={setShow} deadLine={deadLine} setDeadLine={setDeadLine} />
+            <Modal ListBoxPlace={ListBoxPlace} hPHI={hPHI} setHPHI={setHPHI} lPHI={lPHI} setLPHI={setLPHI} hPLI={hPLI} setHPLI={setHPLI} lPLI={lPLI} setLPLI={setLPLI} text={text} setText={setText} show={show} setShow={setShow}/>
             <div className='box1'>重要度 高 / 優先度 高
               <Button setShow={setShow} ListBoxPlace={"HPHI"} setListBoxPlace={setListBoxPlace} />
               <TaskBox preTodos={hPHI} setPreTodos={setHPHI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen} />
