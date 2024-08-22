@@ -1,11 +1,6 @@
 .header {
   color: white;
-  /*font-family: "Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;*/
-  padding-top: 4px;
-  padding-bottom: 4px;
-  background-color: darkgray;
   }
-
   .overlay {
       position:fixed;
       top:0;
@@ -17,16 +12,14 @@
       align-items: center;
       justify-content: center;
   }
-
   .content{
     z-index:2;
     width:50%;
     padding: 1em;
     background:#fff;
   }
-  
   .container {
-    height: 256%;
+    height: 1440px;
     width: 100%;
     display: flex;
     border: 1px solid #e6e6e6;
@@ -34,14 +27,16 @@
 
   .left-container{
     flex: 1;
-    display: flex;
+    height:1440px;
     flex-direction: column;
   }
+
   .right-container{
     flex: 1;
-    display: flex;
+    height: 1440px;
     flex-direction: column;
   }
+
   .right-high-container{
     flex: 1;
     display: flex;
@@ -55,19 +50,23 @@
   }
 
   .box1{
-    flex: 1;
+    flex:1;
+    height:720px;
   }
 
   .box2{
     flex: 1;
+    height:720px;
   }
 
   .box3{
     flex: 1;
+    height:720px
   }
 
   .box4{
     flex: 1;
+    height:720px;
   }
 
   .button {
@@ -82,26 +81,15 @@
     font-size: 15px; /* テキストのフォントサイズ */
     cursor: pointer; /* マウスポインタを変更する */
     height: 10%;
-  }
-  .App {
-    text-align: center;
-  }
-  
-  input {
-    margin: 0.5em;
-  }
-  
-  .button2 {
-    margin: 0.5em;
-  }
-  
+  }  
   ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
   }
   
   li {
-    margin: 0.5em 0;
+    margin: 0;
   }
   .margin {
     margin: 0.2em;
@@ -212,11 +200,6 @@
     position: relative;
   }
   
-  .empty {
-    height: 60px;
-    width: 100%;
-    display: block;
-  }
   .empty:hover {
     cursor: pointer;
     background: rgba(0, 162, 106, 0.04);
@@ -244,15 +227,15 @@
     min-height: 10px;
   }
 
-  .time-schedule span.time {
-    width: 5em;
-    display: inline-block;
-    margin-left: -8em;
-    padding: 0 0 5px;
-    margin-top: 15px;
-    vertical-align: top;
-    position: relative;
-    text-align: right;
-    z-index: 2;
-    box-sizing: border-box;
+  .time {
+    margin-top: -1440px;
+    margin-left: 50px;
+    width: 100%;
+    background-color: aqua;
+
+  }
+  .empty {
+    height: 60px;
+    width: 100%;
+    display: block;
   }

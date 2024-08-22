@@ -1,5 +1,5 @@
 export const TIME_LIST = [
-  { id: 0, time: "00:00" },
+  { id: 1, time: "00:00" },
   { id: 1, time: "01:00" },
   { id: 2, time: "02:00" },
   { id: 3, time: "03:00" },
@@ -23,6 +23,9 @@ export const TIME_LIST = [
   { id: 21, time: "21:00" },
   { id: 22, time: "22:00" },
   { id: 23, time: "23:00" },
-  { id: 24, time: "24:00" }
 ];
 
+export const HOUR_LIST = [
+  {id:1, time: "00:00"},
+  {id:1440, time: "24:00"}
+]

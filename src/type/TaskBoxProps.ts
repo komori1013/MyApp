@@ -1,6 +1,10 @@
 import { Todo } from "./Todo";
 
 export type TaskBoxProps = {
+  modal2:string;
+  setModal2: Function;
+  show2: boolean;
+  setShow2: Function;
   preTodos: Todo[];
   setPreTodos: Function;
   eight: Todo[];

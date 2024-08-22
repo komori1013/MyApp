@@ -10,7 +10,6 @@ type TimelineProps = {
 
 export function Timeline() {
   return (
-    <div>
       <div>
         <ul>
           {TIME_LIST.map((timeItem) => {
@@ -24,6 +23,5 @@ export function Timeline() {
           })}
         </ul>
       </div>
-    </div>
   );
 };
