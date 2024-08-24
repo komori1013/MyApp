@@ -30,11 +30,11 @@ const editTodo = (Todos: {}, setTodos: Function, id: number, newText: string | n
   setTodos({ ...Todos, [id]: { id: id, text: newText, deadLine: newDeadLine } });
 };
 
-
 const deleteTodo = (Todos: {}, setTodos: Function, id: number) => {
   /*const {[id]: {}, ...rest} = Todos;
   setHPHI(Todos);
   */
-  setTodos({ ...Todos, [id]: {} });
+  setTodos(({[id]: {},...Todos }) => {
+  setTodos({...Todos});
+  })
 };
-

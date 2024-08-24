@@ -28,6 +28,7 @@ export default function App() {
   const [eleven, setEleven] = useState([]);
   const [twelve, setTwelve] = useState([]);
   const [thirteen, setThirteen] = useState([]);
+  
   const [fourteen, setFourteen] = useState([]);
   const [fifteen, setFifteen] = useState([]);
   const [sixteen, setSixteen] = useState([]);
@@ -35,35 +36,24 @@ export default function App() {
   const [ListBoxPlace, setListBoxPlace] = useState<string>("");
   const [startLine, setStartLine] = useState<string>("");
   const [deadLine, setDeadLine] = useState<string>("");
+  const [finalData,setFinalData] = useState([]);
   
-  const weekStartDayOffset = 0;
-  const _date = dayjs(); //
-  const _day = _date.day();
-  const dayList = Array(7)
-    .fill(0)
-    .map((_, idx) => {
-      const day = weekStartDayOffset + idx;
-      const dayFormat = dayjs(
-        _date.date(_date.date() - _day + weekStartDayOffset + idx)
-      );
-      return { day: day, date: dayFormat.format("YYYY-MM-DD") };
-    });
-
-    console.log(modal2);
-
+  const day = dayjs().format('YYYY-MM-DD')
+  
   return (
     <>
+      <header className="header">{day}</header>
       <body className='container'>
 
         <div className="left-container">
           <Timeline/>
-          <Finalset modal2 = {modal2} startLine={startLine} deadLine={deadLine}/>
+          <Finalset finalData={finalData} modal2 = {modal2} startLine={startLine} deadLine={deadLine}/>
         </div>
 
         <div className='right-container'>
           <div className='right-high-container'>
             <Modal ListBoxPlace={ListBoxPlace} hPHI={hPHI} setHPHI={setHPHI} lPHI={lPHI} setLPHI={setLPHI} hPLI={hPLI} setHPLI={setHPLI} lPLI={lPLI} setLPLI={setLPLI} text={text} setText={setText} show={show} setShow={setShow}/>
-            <Modal2 show2={show2} setShow2={setShow2} modal2={modal2} setModal2={setModal2} startLine={startLine} setStartLine={setStartLine} deadLine={deadLine} setDeadLine={setDeadLine}/>
+            <Modal2 finalData= {finalData} setFinalData={setFinalData}show2={show2} setShow2={setShow2} modal2={modal2} setModal2={setModal2} startLine={startLine} setStartLine={setStartLine} deadLine={deadLine} setDeadLine={setDeadLine}/>
             <div className='box1'>重要度 高 / 優先度 高
               <Button setShow={setShow} ListBoxPlace={"HPHI"} setListBoxPlace={setListBoxPlace} />
               <TaskBox modal2={modal2} setModal2={setModal2} show2={show2} setShow2={setShow2} preTodos={hPHI} setPreTodos={setHPHI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen} />
