@@ -58,17 +58,17 @@ function handleSubmit2 (hPHI:Todo[] ,setHPHI:Function, lPHI:Todo[], setLPHI:Func
     setHPHI(({[modal2_2]: {},...hPHI}) => {
       setHPHI({...hPHI});
   })}
-  else if (g === "HPHI") {
+  else if (g === "LPHI") {
     setLPHI(({[modal2_2]: {},...lPHI}) => {
       setLPHI({...lPHI});
   })}
-  else if (g === "HPHI") {
+  else if (g === "HPLI") {
     setHPLI(({[modal2_2]: {},...hPLI}) => {
       setHPLI({...hPLI});
   })}
-  else if (g === "HPHI") {
+  else if (g === "LPLI") {
     setLPLI(({[modal2_2]: {},...lPLI}) => {
-      setLPLI({...lPHI});
+      setLPLI({...lPLI});
   })}
 
 
