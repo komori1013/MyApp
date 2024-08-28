@@ -6,6 +6,7 @@ import { Area } from "../type/Area";
 
 interface FinalsetProps {
   finalData: Finaltime[]; // `finalData`は`Finaltime`オブジェクトの配列であるべきです
+  setFinalData:Function;
   modal2: string;
   hPHI: Todo[];
   setHPHI: Function;
@@ -18,7 +19,7 @@ interface FinalsetProps {
 }
 
 
-export const Finalset = ({ finalData, modal2, hPHI ,setHPHI, lPHI, setLPHI, hPLI, setHPLI, lPLI, setLPLI}: FinalsetProps) => {
+export const Finalset = ({ finalData, setFinalData, modal2, hPHI ,setHPHI, lPHI, setLPHI, hPLI, setHPLI, lPLI, setLPLI}: FinalsetProps) => {
   return (
     <ul className="time">
       {HOUR_LIST.map((hour, index) => {
@@ -45,7 +46,7 @@ export const Finalset = ({ finalData, modal2, hPHI ,setHPHI, lPHI, setLPHI, hPLI
 
           {matchedFinal ? matchedFinal.data + " ": null}
           {matchedFinal ? matchedFinal.time + "分" : null}
-          {matchedFinal ? <button　onClick={()=>handleClick(matchedFinal.place,matchedFinal.data,hPHI ,setHPHI, lPHI, setLPHI, hPLI, setHPLI, lPLI, setLPLI)}>戻す</button>: null}
+          {matchedFinal ? <button　onClick={()=>handleClick(finalData,setFinalData,matchedFinal.id,matchedFinal.starttime,matchedFinal.deadtime,matchedFinal.place,matchedFinal.data,hPHI ,setHPHI, lPHI, setLPHI, hPLI, setHPLI, lPLI, setLPLI)}>戻す</button>: null}
 
           </li>
         );
@@ -54,7 +55,12 @@ export const Finalset = ({ finalData, modal2, hPHI ,setHPHI, lPHI, setLPHI, hPLI
   );
 };
 
-const handleClick=(place:string, data:string,hPHI: Todo[],setHPHI: Function,lPHI: Todo[],setLPHI: Function,hPLI: Todo[],setHPLI: Function,lPLI: Todo[],setLPLI: Function)=>{
+const handleClick=(finalData:Finaltime[],setFinalData:Function, index:number, starttime:number,deadtime:number,place:string, data:string,hPHI: Todo[],setHPHI: Function,lPHI: Todo[],setLPHI: Function,hPLI: Todo[],setHPLI: Function,lPLI: Todo[],setLPLI: Function)=>{
+
+setFinalData(({[index]: {},...finalData }) => {
+setFinalData({...finalData});
+ })
+
   if (place === Area.HPHIPlACE) {
     const id: number = new Date().getTime();
     const newhPHI: Todo = {

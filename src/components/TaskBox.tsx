@@ -3,13 +3,13 @@ import { Todo } from "../type/Todo";
 import { Modal2 } from "./Modal2";
 
 
-export function TaskBox({setModal2_1, modal2, setModal2,show2, setShow2, preTodos, setPreTodos, eight, setEight, nine, setNine, ten, setTen, eleven, setEleven, twelve, setTwelve, thirteen, setThirteen, fourteen, setFourteen, fifteen, setFifteen, sixteen, setSixteen, seventeen, setSeventeen}: TaskBoxProps) {
+export function TaskBox({setModal2_2,setModal2_1, modal2, setModal2,show2, setShow2, preTodos, setPreTodos, eight, setEight, nine, setNine, ten, setTen, eleven, setEleven, twelve, setTwelve, thirteen, setThirteen, fourteen, setFourteen, fifteen, setFifteen, sixteen, setSixteen, seventeen, setSeventeen}: TaskBoxProps) {
   return (
     <ul>
       {Object.values(preTodos).map(preTodo => {
         return (
           <li key={preTodo.id}>
-            <button className="margin" onClick={() => setshowmodal2(preTodo.text, preTodo.place,setModal2,setShow2,setModal2_1)}>←</button>
+            <button className="margin" onClick={() => setshowmodal2(preTodo.id,preTodo.text, preTodo.place,setModal2,setShow2,setModal2_1,setModal2_2)}>schedule</button>
             <input className="margin2" type="text" value={preTodo.text} />
             <button className="margin" onClick={() => editTodo(preTodos, setPreTodos, preTodo.id, prompt("new Text:"), prompt('New deadline:'))}>Edit</button>
             <button className="margin" onClick={() => deleteTodo(preTodos, setPreTodos, preTodo.id)}>Delete</button>
@@ -20,10 +20,11 @@ export function TaskBox({setModal2_1, modal2, setModal2,show2, setShow2, preTodo
   )
 };
 
-const setshowmodal2 = (text: string, place: string, setmodal2:Function, setShow2:Function, setModal2_1:Function) => {
+const setshowmodal2 = (id: Number,text: string, place: string, setmodal2:Function, setShow2:Function, setModal2_1:Function, setModal2_2:Function) => {
 setShow2(true);
 setmodal2(text);
 setModal2_1(place);
+setModal2_2(id);
 };
 
 
