@@ -15,6 +15,7 @@ const today = dayjs().format("YYYY-MM-DD");
 
 export default function App() {
   const [modal2, setModal2] =useState(""); 
+  const [modal2_1, setModal2_1] =useState(""); 
   const [show, setShow] = useState<boolean>(false);
   const [show2, setShow2] = useState<boolean>(false);
   const [text, setText] = useState<string>("");
@@ -47,30 +48,30 @@ export default function App() {
 
         <div className="left-container">
           <Timeline/>
-          <Finalset finalData={finalData} modal2 = {modal2} startLine={startLine} deadLine={deadLine}/>
+          <Finalset finalData={finalData} modal2 = {modal2} hPHI={hPHI} setHPHI={setHPHI} lPHI={lPHI} setLPHI={setLPHI} hPLI={hPLI} setHPLI={setHPLI} lPLI={lPLI} setLPLI={setLPLI}/>
         </div>
 
         <div className='right-container'>
           <div className='right-high-container'>
             <Modal ListBoxPlace={ListBoxPlace} hPHI={hPHI} setHPHI={setHPHI} lPHI={lPHI} setLPHI={setLPHI} hPLI={hPLI} setHPLI={setHPLI} lPLI={lPLI} setLPLI={setLPLI} text={text} setText={setText} show={show} setShow={setShow}/>
-            <Modal2 finalData= {finalData} setFinalData={setFinalData}show2={show2} setShow2={setShow2} modal2={modal2} setModal2={setModal2} startLine={startLine} setStartLine={setStartLine} deadLine={deadLine} setDeadLine={setDeadLine}/>
+            <Modal2 modal2_1={modal2_1} finalData= {finalData} setFinalData={setFinalData}show2={show2} setShow2={setShow2} modal2={modal2} setModal2={setModal2} startLine={startLine} setStartLine={setStartLine} deadLine={deadLine} setDeadLine={setDeadLine}/>
             <div className='box1'>重要度 高 / 優先度 高
               <Button setShow={setShow} ListBoxPlace={"HPHI"} setListBoxPlace={setListBoxPlace} />
-              <TaskBox modal2={modal2} setModal2={setModal2} show2={show2} setShow2={setShow2} preTodos={hPHI} setPreTodos={setHPHI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen} />
+              <TaskBox setModal2_1={setModal2_1} modal2={modal2} setModal2={setModal2} show2={show2} setShow2={setShow2} preTodos={hPHI} setPreTodos={setHPHI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen} />
             </div>
             <div className='box2'>重要度 低 / 優先度 高
               <Button setShow={setShow} ListBoxPlace={"HPLI"} setListBoxPlace={setListBoxPlace} />
-              <TaskBox modal2={modal2} setModal2={setModal2} show2={show2} setShow2={setShow2} preTodos={hPLI} setPreTodos={setHPLI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen} />
+              <TaskBox setModal2_1={setModal2_1} modal2={modal2} setModal2={setModal2} show2={show2} setShow2={setShow2} preTodos={hPLI} setPreTodos={setHPLI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen} />
             </div>
           </div>
           <div className='right-row-container'>
             <div className='box3'>重要度 高 / 優先度 低
               <Button setShow={setShow} ListBoxPlace={"LPHI"} setListBoxPlace={setListBoxPlace} />
-              <TaskBox modal2={modal2} setModal2={setModal2} show2={show2} setShow2={setShow2} preTodos={lPHI} setPreTodos={setLPHI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen} />
+              <TaskBox setModal2_1={setModal2_1} modal2={modal2} setModal2={setModal2} show2={show2} setShow2={setShow2} preTodos={lPHI} setPreTodos={setLPHI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen} />
             </div>
             <div className='box4'>重要度 低 / 優先度 低
               <Button setShow={setShow} ListBoxPlace={"LPLI"} setListBoxPlace={setListBoxPlace} />
-              <TaskBox modal2={modal2} setModal2={setModal2} show2={show2} setShow2={setShow2} preTodos={lPLI} setPreTodos={setLPLI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen} />
+              <TaskBox setModal2_1={setModal2_1} modal2={modal2} setModal2={setModal2} show2={show2} setShow2={setShow2} preTodos={lPLI} setPreTodos={setLPLI} eight={eight} setEight={setEight} nine={nine} setNine={setNine} ten={ten} setTen={setTen} eleven={eleven} setEleven={setEleven} twelve={twelve} setTwelve={setTwelve} thirteen={thirteen} setThirteen={setThirteen} fourteen={fourteen} setFourteen={setFourteen} fifteen={fifteen} setFifteen={setFifteen} sixteen={sixteen} setSixteen={setSixteen} seventeen={seventeen} setSeventeen={setSeventeen} />
             </div>
           </div>
         </div>
@@ -78,3 +79,9 @@ export default function App() {
     </>
   );
 };
+type finaltime  = {
+  id:number;
+  starttime: string;
+  deadtime: string
+  time:number;
+  }

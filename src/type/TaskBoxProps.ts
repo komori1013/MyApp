@@ -1,6 +1,7 @@
 import { Todo } from "./Todo";
 
 export type TaskBoxProps = {
+  setModal2_1: Function;
   modal2:string;
   setModal2: Function;
   show2: boolean;

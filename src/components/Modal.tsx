@@ -8,11 +8,10 @@ export function Modal({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPL
     return (
       <div className="overlay">
         <div className="content">
-          <h3>予定を追加する</h3>
-          <hr/>
+          <div>Add task</div>
           <input type="text" value={text} onChange={(event) => setText(event.target.value)} />
-          <input type="submit" value="送信" onClick={() => handleSubmit({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPLI, lPLI, setLPLI, text, setText})} />
-          <p><button onClick={() => setShow(false)}>閉じる</button></p>
+          <p><input type="submit" value="Save" onClick={() => handleSubmit({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPLI, lPLI, setLPLI, text, setText})} />
+        <button style ={{marginLeft: "10px"}}onClick={() => setShow(false)}>✕</button></p>
         </div>
       </div>
     )
@@ -27,6 +26,7 @@ function handleSubmit({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPL
     const newhPHI: Todo = {
       id: new Date().getTime(),
       text: text,
+      place: "HPHI",
     }
     setHPHI({ [id]: newhPHI, ...hPHI });
     setText("");
@@ -36,6 +36,7 @@ function handleSubmit({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPL
     const newlPHI: Todo = {
       id: new Date().getTime(),
       text: text,
+      place: "LPHI",
     }
     setLPHI({ [id]: newlPHI, ...lPHI });
     setText("");
@@ -45,6 +46,7 @@ function handleSubmit({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPL
     const newhPLI: Todo = {
       id: new Date().getTime(),
       text: text,
+      place: "HPLI",
     }
     setHPLI({ [id]: newhPLI, ...hPLI });
     setText("");
@@ -54,6 +56,7 @@ function handleSubmit({ ListBoxPlace, hPHI, setHPHI, lPHI, setLPHI, hPLI, setHPL
     const newlPLI: Todo = {
       id: new Date().getTime(),
       text: text,
+      place: "LPLI",
     }
     setLPLI({ [id]: newlPLI, ...lPLI });
     setText("");

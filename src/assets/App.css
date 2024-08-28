@@ -1,5 +1,8 @@
 .header {
-  font-size: 30px;
+  font-family: "メイリオ"; 
+  font-size: 25px;
+  background-color: #e5ecf5;
+  padding: 5px;
 }
   .overlay {
       position:fixed;
@@ -19,6 +22,7 @@
     background:#fff;
   }
   .container {
+    font-family: "メイリオ"; 
     height: 1440px;
     width: 100%;
     display: flex;
@@ -27,13 +31,13 @@
 
   .left-container{
     flex: 1;
-    height:1440px;
+    height:600px;
     flex-direction: column;
   }
 
   .right-container{
     flex: 1;
-    height: 1440px;
+    height: 600px;
     flex-direction: column;
   }
 
@@ -51,43 +55,53 @@
 
   .box1{
     flex:1;
-    height:720px;
+    height:296px;
     border-left: 1px solid#e6e6e6;
+    padding-left: 5px;
+    overflow-y: scroll;
   }
 
   .box2{
     flex: 1;
-    height:720px;
+    height:296px;
     border-left: 1px solid#e6e6e6;
+    padding-left: 5px;
+    overflow-y: scroll;
+    overflow-y: scroll;
   }
 
   .box3{
     flex: 1;
     border-left: 1px solid#e6e6e6;
     border-top: 1px solid#e6e6e6;
-    height:720px
-    
+    border-bottom: 1px solid#e6e6e6;
+    height:300px;
+    padding-left: 5px;
+    overflow-y: scroll;
   }
 
   .box4{
     flex: 1;
     border-left: 1px solid#e6e6e6;
     border-top: 1px solid#e6e6e6;
-    height:720px;
+    border-bottom: 1px solid#e6e6e6;
+    height:300px;
+    padding-left: 5px;
+    overflow-y: scroll;
   }
 
   .button {
-    border: darkgray; /* 枠線をなくす */
-    border-radius: 5px; /* 角丸をつける */
+    border: none; /* 枠線をなくす */
+    border-radius: 10px; /* 角丸をつける */
     margin: 5px; /* ボタン同士の余白 */
-    background-color:#e6e6e6; /* ボタンの背景色 */
-    color: darkgray; /* ボタンの文字色 */
+    background-color:#d5e4f7; /* ボタンの背景色 */
+    color: #0d1d2a; /* ボタンの文字色 */
     text-align: center; /* ボタンのテキストを中央揃えにする */
     text-decoration: none; /* テキストに下線をつけない */
-    font-size: 15px; /* テキストのフォントサイズ */
+    font-size: 20px; /* テキストのフォントサイズ */
     cursor: pointer; /* マウスポインタを変更する */
     height: 40px;
-    width: 45px;
+    width: 40px;
 
   }  
   ul {
@@ -101,6 +115,11 @@
   }
   .margin {
     margin: 0.2em;
+  }
+
+  .margin2 {
+    margin: 0.2em;
+    border: none;
   }
 
   .table {
@@ -172,17 +191,11 @@
   /*使用中*/
   .horizontalHeight {
     height: 59px;
+    padding-left: 5px;
     border-bottom:1px solid #e6e6e6;
   }
   
-  .horizontalHeight:after {
-    content: "";
-    border-top: 1px solid #e6e6e6;
-    width: 100%;
-    margin-top: 1px;
-    z-index: 1;
-    pointer-events: none;
-  }
+  
   
 
   .timesolotsBorderRight {
@@ -237,7 +250,7 @@
   }
 
   .time {
-    margin-top: -1440px;
+    margin-top: -598px;
     margin-left: 50px;
   }
 
@@ -249,4 +262,20 @@
     height: 60px;
     width: 100%;
     display: block;
+  }
+
+  .last {
+  height: 1px;
+  padding-left: 15px;
+  border-radius: 5px; /* 角丸をつける */
+  border: none; /* 枠線をなくす */
+  width: 50%;
+  }
+
+  .p {
+    font-size: 10px;
+  }
+
+  .none {
+    border: none;
   }
