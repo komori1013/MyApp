@@ -42,6 +42,20 @@ function handleSubmit2 (hPHI:Todo[] ,setHPHI:Function, lPHI:Todo[], setLPHI:Func
   let f = deadSeconds - startSeconds;
   let g = modal2_1
 
+/*if (finalplanの中がカラーされていたら){
+    alert()
+    return;}
+
+*/
+const isConflict = Object.values(finalData).some((final) =>
+  (final.starttime < d && c < final.deadtime) || (final.starttime < c && d < final.deadtime)
+);
+
+if (isConflict) {
+  alert("すでに予定が入っております");
+  return; // 重複があった場合、以降の処理を停止
+}
+
 
 
   const newfinalData: finaltime = {
@@ -53,6 +67,7 @@ function handleSubmit2 (hPHI:Todo[] ,setHPHI:Function, lPHI:Todo[], setLPHI:Func
     place: g
   }
   setFinalData({ [id]: newfinalData, ...finalData });
+
 
   if (g === "HPHI") {
     setHPHI(({[modal2_2]: {},...hPHI}) => {
@@ -80,6 +95,13 @@ type finaltime  =   {
   time: number;
   place: string;
   }
+
+  /*if (finalplanの中がカラーされていたら){
+    alert()
+
+  }
+*/
+
 };
 
   

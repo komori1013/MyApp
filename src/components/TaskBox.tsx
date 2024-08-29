@@ -9,7 +9,7 @@ export function TaskBox({setModal2_2,setModal2_1, modal2, setModal2,show2, setSh
       {Object.values(preTodos).map(preTodo => {
         return (
           <li key={preTodo.id}>
-            <button className="margin" onClick={() => setshowmodal2(preTodo.id,preTodo.text, preTodo.place,setModal2,setShow2,setModal2_1,setModal2_2)}>schedule</button>
+            <button className="margin" onClick={() => setshowmodal2(preTodo.id,preTodo.text, preTodo.place,setModal2,setShow2,setModal2_1,setModal2_2)}>Plan</button>
             <input className="margin2" type="text" value={preTodo.text} />
             <button className="margin" onClick={() => editTodo(preTodos, setPreTodos, preTodo.id, prompt("new Text:"), prompt('New deadline:'))}>Edit</button>
             <button className="margin" onClick={() => deleteTodo(preTodos, setPreTodos, preTodo.id)}>Delete</button>

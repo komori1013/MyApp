@@ -3,6 +3,7 @@ import { HOUR_LIST } from "../type/Time_hour";
 import { Finaltime } from "../type/Finaltime";
 import { Todo } from "../type/Todo";
 import { Area } from "../type/Area";
+import React,{useEffect, useRef} from "react";
 
 interface FinalsetProps {
   finalData: Finaltime[]; // `finalData`は`Finaltime`オブジェクトの配列であるべきです
@@ -18,8 +19,8 @@ interface FinalsetProps {
   setLPLI: Function;
 }
 
-
 export const Finalset = ({ finalData, setFinalData, modal2, hPHI ,setHPHI, lPHI, setLPHI, hPLI, setHPLI, lPLI, setLPLI}: FinalsetProps) => {
+
   return (
     <ul className="time">
       {HOUR_LIST.map((hour, index) => {
@@ -32,7 +33,7 @@ export const Finalset = ({ finalData, setFinalData, modal2, hPHI ,setHPHI, lPHI,
         });
 
         const matchedFinal = Object.values(finalData).find(final => hour === final.starttime);
-
+   
         return (
           <li
             className="last"
