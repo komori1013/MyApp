@@ -50,51 +50,13 @@ export default function App() {
   const [ListBoxPlace, setListBoxPlace] = useState<string>("");
   const [startLine, setStartLine] = useState<string>("");
   const [deadLine, setDeadLine] = useState<string>("");
-  const [finalData, setFinalData] = useState<Finaltime[]>([]);
+  const [finalData, setFinalData] = useState<any[]>([]);
   
   const day = dayjs().format('YYYY-MM-DD');
 
-  class Finaltime {
-    id: number;
-    starttime: number; 
-    deadtime: number; 
-    data: string;
-    time: number;
-    place: string;
-  
-    constructor(id: number, starttime: number, deadtime: number, data: string, time: number, place: string) {
-      this.id = id;
-      this.starttime = starttime;
-      this.deadtime = deadtime;
-      this.data = data;
-      this.time = time;
-      this.place = place;
-    }
-  }
-  
-  // Finaltime インスタンスをオブジェクトに変換する関数
-  const convertFinaltimeToObject = (finaltime: Finaltime) => ({
-    id: finaltime.id,
-    starttime: finaltime.starttime,
-    deadtime: finaltime.deadtime,
-    data: finaltime.data,
-    time: finaltime.time,
-    place: finaltime.place,
-  });
-  
-  // オブジェクトを Finaltime インスタンスに変換する関数
-  const convertObjectToFinaltime = (obj: any) => new Finaltime(
-    obj.id,
-    obj.starttime,
-    obj.deadtime,
-    obj.data,
-    obj.time,
-    obj.place
-  );
-
   const saveToLocalStorage = () => {
     const data = {
-      finalData: Object.values(finalData).map(final=> convertFinaltimeToObject(final)),
+      finalData,
       modal2,
       hPHI,
       lPHI,
@@ -112,7 +74,7 @@ export default function App() {
     const savedData = localStorage.getItem('myAppData');
     if (savedData) {
       const parsedata = JSON.parse(savedData);
-      setFinalData(parsedata.finalData.map(convertObjectToFinaltime));
+      setFinalData(parsedata.finalData);
       setModal2(parsedata.modal2);
       setHPHI(parsedata.hPHI);
       setLPHI(parsedata.lPHI);
