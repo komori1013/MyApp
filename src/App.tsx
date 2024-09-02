@@ -9,6 +9,7 @@ import { TodoBoard } from './components/TodoBoard';
 import { Modal2 } from "./components/Modal2";
 import { Finalset } from "./components/finalset";
 import { useEffect } from 'react';
+import CalendarMonthSharpIcon from '@mui/icons-material/CalendarMonthSharp';
 
 export class Finaltime {
   id: number;
@@ -52,7 +53,7 @@ export default function App() {
   const [deadLine, setDeadLine] = useState<string>("");
   const [finalData, setFinalData] = useState<any[]>([]);
   
-  const day = dayjs().format('YYYY-MM-DD');
+  const day = dayjs().format('YYYY年MM月DD日');
 
   const saveToLocalStorage = () => {
     const data = {
@@ -92,19 +93,26 @@ export default function App() {
   };
   return (
     <>
-      <header className="header">{day}
+      <header className="header">
+      <CalendarMonthSharpIcon style={{fontSize: 24 }} /> 
+      <span className="title">Todo Board</span> 
+      <span>{day}</span>
+      <span className="title3">
       <button onClick={saveToLocalStorage}>save</button>
       <button onClick={loadFromLocalStorage}>load</button>
       <button onClick={clearFromLocalStorage}>clear</button>
+      </span>
       </header>
       <body className='container'>
 
         <div className="left-container">
+        <div className="title1">予定</div>
           <Timeline/>
           <Finalset finalData={finalData} setFinalData={setFinalData} modal2 = {modal2} hPHI={hPHI} setHPHI={setHPHI} lPHI={lPHI} setLPHI={setLPHI} hPLI={hPLI} setHPLI={setHPLI} lPLI={lPLI} setLPLI={setLPLI}/>
         </div>
 
         <div className='right-container'>
+          <div className="title2">タスク</div>
           <div className='right-high-container'>
             <Modal ListBoxPlace={ListBoxPlace} hPHI={hPHI} setHPHI={setHPHI} lPHI={lPHI} setLPHI={setLPHI} hPLI={hPLI} setHPLI={setHPLI} lPLI={lPLI} setLPLI={setLPLI} text={text} setText={setText} show={show} setShow={setShow}/>
             <Modal2 hPHI={hPHI} setHPHI={setHPHI} lPHI={lPHI} setLPHI={setLPHI} hPLI={hPLI} setHPLI={setHPLI} lPLI={lPLI} setLPLI={setLPLI} modal2_1={modal2_1} modal2_2={modal2_2} finalData= {finalData} setFinalData={setFinalData}show2={show2} setShow2={setShow2} modal2={modal2} setModal2={setModal2} startLine={startLine} setStartLine={setStartLine} deadLine={deadLine} setDeadLine={setDeadLine}/>

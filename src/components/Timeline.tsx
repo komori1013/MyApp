@@ -13,8 +13,7 @@ export function Timeline() {
       <div>
         <ul>
           {TIME_LIST.map((timeItem) => {
-            const splitedHour = Number(timeItem.time.split(":")[0]);
-            const time = `${splitedHour}:${timeItem.time.split(":")[1]}`;
+            const time = timeItem.time;
             return (
               <li className="horizontalHeight" key={timeItem.id}>
                 {time}

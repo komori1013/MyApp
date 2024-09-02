@@ -40,7 +40,7 @@ export const Finalset = ({ finalData, setFinalData, modal2, hPHI ,setHPHI, lPHI,
             key={index} // Use `index` as the key
             style={{
               background: isInAnyRange ? '#65aee9' : 'transparent',
-              color: isInAnyRange ? 'black' : 'white',
+              color: isInAnyRange ? 'white' : 'transparent',
 
             }}
           >
